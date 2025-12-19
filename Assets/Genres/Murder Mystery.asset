@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6d809772b14d847b491777f3e72d00, type: 3}
   m_Name: Murder Mystery
   m_EditorClassIdentifier: 
-  genreName: Murder Mystery
-  ageRatingScores:
-  - rating: 0
+  genre:
+    Name: Murder Mystery
+  ratingList:
+  - agerating: 0
     score: 10
-  - rating: 1
-    score: 30
-  - rating: 2
+  - agerating: 1
+    score: 20
+  - agerating: 2
     score: 50
-  - rating: 3
-    score: 10
-  basePopularity: 0
-  marketTrend: 0

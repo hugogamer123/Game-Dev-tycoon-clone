@@ -1,34 +1,31 @@
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "New Genre", menuName = "Game/Genre")]
+[CreateAssetMenu(fileName = "New Genre", menuName = "Genre/New Genre")]
 public class GenreData : ScriptableObject
 {
-    public string genreName;
-
     [System.Serializable]
-    public class AgeRatingScore
+    public class Genre
     {
-        public AgeRating rating;
+        public string Name;
+    }
+    [System.Serializable]
+    public class AgeRatingStuff
+    {
+        public AgeRating agerating;
         public int score;
     }
-
-    public List<AgeRatingScore> ageRatingScores = new List<AgeRatingScore>();
-
-    public int basePopularity;
-    public float marketTrend;
-
-    public int GetScoreForRating(AgeRating rating)
-    {
-        var entry = ageRatingScores.Find(x => x.rating == rating);
-        return entry != null ? entry.score : 0;
-    }
+    [Header("Genre Name")]
+    public Genre genre;
+    [Header("Ratings and their scores")]
+    public List<AgeRatingStuff> ratingList = new List<AgeRatingStuff>();
 }
 
 public enum AgeRating
 {
     Everyone,
     Teen,
-    Mature,
-    AdultsOnly
+    Mature
 }
