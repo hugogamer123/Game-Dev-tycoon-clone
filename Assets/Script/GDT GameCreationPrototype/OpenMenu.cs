@@ -4,6 +4,7 @@ using static UnityEngine.ParticleSystem;
 public class OpenMenu : MonoBehaviour
 {
     public GameObject gameUI;
+    public GameObject GameCreatePanel;
 
     public void Awake()
     {
@@ -33,4 +34,6 @@ public class OpenMenu : MonoBehaviour
             }
         }
     }
+
+    public void OpenCreateGameUI() => GameCreatePanel.SetActive(true);
 }

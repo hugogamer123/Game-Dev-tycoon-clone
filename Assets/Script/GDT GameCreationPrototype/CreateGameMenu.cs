@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class CreateGameMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject panel;
+    
+    private void Awake()
     {
-        
+        panel.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void CloseGameUI() => panel.SetActive(false);
+
 }
