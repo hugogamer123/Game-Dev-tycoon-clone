@@ -10,14 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6d809772b14d847b491777f3e72d00, type: 3}
-  m_Name: Murder Mystery
+  m_Name: Horror
   m_EditorClassIdentifier: 
-  genre:
-    Name: Murder Mystery
-  ratingList:
-  - agerating: 0
-    score: 10
-  - agerating: 1
-    score: 20
-  - agerating: 2
-    score: 50
+  GenreName: Horror
+  ERatePoint: 15
+  TRatePoint: 35
+  MRatePoint: 50
+  MaxPoint: 0

@@ -6,21 +6,15 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "New Genre", menuName = "Genre/New Genre")]
 public class GenreData : ScriptableObject
 {
-    [System.Serializable]
-    public class Genre
-    {
-        public string Name;
-    }
-    [System.Serializable]
-    public class AgeRatingStuff
-    {
-        public AgeRating agerating;
-        public int score;
-    }
-    [Header("Genre Name")]
-    public Genre genre;
-    [Header("Ratings and their scores")]
-    public List<AgeRatingStuff> ratingList = new List<AgeRatingStuff>();
+    public string GenreName;
+
+    [Header("Age Rating Points")]
+    public int ERatePoint;
+    public int TRatePoint;
+    public int MRatePoint;
+
+    [Header("Max Point")]
+    public int MaxPoint;
 }
 
 public enum AgeRating
