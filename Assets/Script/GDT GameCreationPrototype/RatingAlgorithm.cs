@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class RatingAlgorithm : MonoBehaviour
@@ -8,6 +9,8 @@ public class RatingAlgorithm : MonoBehaviour
     private int AgeRatingPoint;
     private int GenreMaxPoint;
     private int BonusMrkTrdPoint;
+
+    public TextMeshProUGUI ratingDisplay;
 
     //Converts button data to a selected age rating
     public void SelectRating(string ratingStr)
@@ -67,5 +70,10 @@ public class RatingAlgorithm : MonoBehaviour
         else if (CalculatedRating >= 1f) { RatingOutOf10 = 10; }
 
         return RatingOutOf10;
+    }
+
+    private void Update()
+    {
+        ratingDisplay.text = $"Rating : {selectedRating}";
     }
 }
