@@ -5,12 +5,18 @@ public class RatingAlgorithm : MonoBehaviour
 {
     public GenreData genreData;
     public AgeRating selectedRating;
+    public GenreDropdown genredropdown;
+    private float score;
 
-    private int AgeRatingPoint;
-    private int GenreMaxPoint;
-    private int BonusMrkTrdPoint;
+    private float AgeRatingPoint;
+    private float GenreMaxPoint;
+    private float BonusMrkTrdPoint;
 
-    public TextMeshProUGUI ratingDisplay;
+    //For Rating UI
+    public TextMeshProUGUI ratingText;
+    public TextMeshProUGUI AgeRatingText;
+
+    public GameObject ratingDisplay;
 
     //Converts button data to a selected age rating
     public void SelectRating(string ratingStr)
@@ -44,6 +50,7 @@ public class RatingAlgorithm : MonoBehaviour
                 AgeRatingPoint = genre.MRatePoint;
                 break;
         }
+
         // Yoinks max points from the genre
         GenreMaxPoint = genre.MaxPoint;
         //Gets market Trend
@@ -51,13 +58,18 @@ public class RatingAlgorithm : MonoBehaviour
 
         //Don't forget to finish market trend code!!!
 
+        //Random Point increase/decrease for more randomness
+        float RandomPointChange = Random.Range(-5, 5);
+
         //Algorithm Calculation (so far)
-        int totalPoints = AgeRatingPoint + BonusMrkTrdPoint;
-        int CalculatedRating = totalPoints / GenreMaxPoint;
+        float totalPoints = AgeRatingPoint + BonusMrkTrdPoint + RandomPointChange;
+        float CalculatedRating = totalPoints / GenreMaxPoint;
+
+
 
         //Converts point into a rating out of 10
         int RatingOutOf10 = 0;
-        if (CalculatedRating >= 0 && CalculatedRating < 0.09f) { RatingOutOf10 = 0; }
+        if (CalculatedRating < 0.09f) { RatingOutOf10 = 0; }
         else if (CalculatedRating >= 0.1f && CalculatedRating < 0.19f) { RatingOutOf10 = 1; }
         else if (CalculatedRating >= 0.2f && CalculatedRating < 0.29f) { RatingOutOf10 = 2; }
         else if (CalculatedRating >= 0.3f && CalculatedRating < 0.39f) { RatingOutOf10 = 3; }
@@ -69,11 +81,42 @@ public class RatingAlgorithm : MonoBehaviour
         else if (CalculatedRating >= 0.9f && CalculatedRating < 0.99f) { RatingOutOf10 = 9; }
         else if (CalculatedRating >= 1f) { RatingOutOf10 = 10; }
 
+        //Bunch of Debug Logs for testing
+        Debug.LogWarning($"Genre: {genredropdown.selectedGenre.GenreName}");
+        Debug.Log($"Age Rating: {selectedRating}");
+        Debug.Log($"Age Rating Points: {AgeRatingPoint}");
+        Debug.Log($"Genre Max Points: {GenreMaxPoint}");
+        Debug.Log($"Random Point Change: {RandomPointChange}");
+        Debug.Log($"Total Points: {totalPoints}");
+        Debug.Log($"Calculated Rating (decimal): {CalculatedRating}");
+        Debug.Log($"Final Rating (out of 10): {RatingOutOf10}");
         return RatingOutOf10;
     }
 
     private void Update()
     {
-        ratingDisplay.text = $"Rating : {selectedRating}";
+        AgeRatingText.text = $"Rating : {selectedRating}";
+    }
+
+    private void RevealRating()
+    {
+        ratingDisplay.gameObject.SetActive(true);
+        ratingText.text = $"Game Rating : {score}/10";
+    }
+
+    public void HideRating()
+    {
+        ratingDisplay.gameObject.SetActive(false);
+    }
+
+    public void StartAlgorithm()
+    {
+        score = ScoreAlgorithm(genredropdown.selectedGenre);
+        RevealRating();
+    }
+
+    private void Start()
+    {
+        HideRating();
     }
 }

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6d809772b14d847b491777f3e72d00, type: 3}
-  m_Name: New Genre
+  m_Name: Platformer
   m_EditorClassIdentifier: 
-  GenreName: 
-  ERatePoint: 0
-  TRatePoint: 0
-  MRatePoint: 0
-  MaxPoint: 0
+  GenreName: Platformer
+  ERatePoint: 50
+  TRatePoint: 35
+  MRatePoint: 15
+  MaxPoint: 50

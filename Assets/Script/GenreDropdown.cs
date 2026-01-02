@@ -7,18 +7,19 @@ using UnityEngine;
 public class GenreDropdown : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private TMP_Dropdown genreDropdown;
+    [SerializeField] public TMP_Dropdown genreDropdown;
     
     [Header("Genres")]
-    [SerializeField] private List<GenreData> genres;
+    [SerializeField] public List<GenreData> genres;
 
     [Header("Selected Genre")]
-    [SerializeField] private GenreData selectedGenre;
+    [SerializeField] public GenreData selectedGenre;
 
     private void Start()
     {
         PopulateDropdown();
         genreDropdown.onValueChanged.AddListener(OnGenreSelected);
+        selectedGenre = genres[0];
     }
 
     void PopulateDropdown()
