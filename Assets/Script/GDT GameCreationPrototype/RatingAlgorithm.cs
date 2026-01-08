@@ -1,3 +1,4 @@
+using HMC.MarketTrend;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class RatingAlgorithm : MonoBehaviour
     public AgeRating selectedRating;
     public GenreDropdown genredropdown;
     private float score;
+    public MarketTrend marketTrend;
 
     private float AgeRatingPoint;
     private float GenreMaxPoint;
@@ -37,6 +39,12 @@ public class RatingAlgorithm : MonoBehaviour
 
     public int ScoreAlgorithm(GenreData genre)
     {
+        //Gets market trend
+
+        AgeRating MarketTrendRating = marketTrend.ageRating;
+        float trendscore = 0;
+
+
         //Decides what rating to yoink points from
         switch (selectedRating)
         {
@@ -53,16 +61,21 @@ public class RatingAlgorithm : MonoBehaviour
 
         // Yoinks max points from the genre
         GenreMaxPoint = genre.MaxPoint;
-        //Gets market Trend
-        //Insert market trend code im too lazy rn
 
-        //Don't forget to finish market trend code!!!
+        if (selectedRating == MarketTrendRating)
+        {
+            trendscore = 20;
+        }
+        else
+        {
+            BonusMrkTrdPoint = 0;
+        }
 
         //Random Point increase/decrease for more randomness
         float RandomPointChange = Random.Range(-5, 5);
 
         //Algorithm Calculation (so far)
-        float totalPoints = AgeRatingPoint + BonusMrkTrdPoint + RandomPointChange;
+        float totalPoints = AgeRatingPoint + BonusMrkTrdPoint + RandomPointChange + trendscore;
         float CalculatedRating = totalPoints / GenreMaxPoint;
 
 
@@ -90,6 +103,7 @@ public class RatingAlgorithm : MonoBehaviour
         Debug.Log($"Total Points: {totalPoints}");
         Debug.Log($"Calculated Rating (decimal): {CalculatedRating}");
         Debug.Log($"Final Rating (out of 10): {RatingOutOf10}");
+        marketTrend.UpdateMarketTrend();
         return RatingOutOf10;
     }
 
@@ -118,5 +132,6 @@ public class RatingAlgorithm : MonoBehaviour
     private void Start()
     {
         HideRating();
+        marketTrend.UpdateMarketTrend();
     }
 }
