@@ -9,6 +9,7 @@ public class RatingAlgorithm : MonoBehaviour
     public GenreDropdown genredropdown;
     private float score;
     public MarketTrend marketTrend;
+    public Reviewer reviewers;
 
     private float AgeRatingPoint;
     private float GenreMaxPoint;
@@ -37,7 +38,7 @@ public class RatingAlgorithm : MonoBehaviour
         }
     }
 
-    public int ScoreAlgorithm(GenreData genre)
+    public int ScoreAlgorithm(GenreData genre /*Reviewer reviewer*/)
     {
         //Gets market trend
 

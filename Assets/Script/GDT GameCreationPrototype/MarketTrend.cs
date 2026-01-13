@@ -18,7 +18,7 @@ namespace HMC.MarketTrend
         {
             //This is to get a market trend on ageratings
             
-            int randomTrend = Random.Range(0, 2);
+            int randomTrend = Random.Range(0, 3);
             switch (randomTrend)
             {
                 case 0:
